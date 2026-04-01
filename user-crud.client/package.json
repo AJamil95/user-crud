@@ -14,7 +14,13 @@
     "lint:eslint": "eslint . --fix --cache"
   },
   "dependencies": {
-    "vue": "^3.5.30"
+    "vue": "^3.5.30",
+    "axios": "^1.4.0",
+    "pinia": "^2.1.0",
+    "vue-router": "^4.2.2",
+    "vuetify": "^4.0.0",
+    "sass": "^1.70.0",
+    "@mdi/font": "^7.4.47"
   },
   "devDependencies": {
     "@tsconfig/node24": "^24.0.4",

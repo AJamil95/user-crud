@@ -7,6 +7,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins("https://localhost:4645", "http://localhost:4645")
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials();
+    });
+});
+
 var configuration = builder.Configuration;
 
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -29,7 +40,8 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
+// Do not force HTTPS in development; use HTTP to simplify local testing
+app.UseCors("AllowFrontend");
 
 app.UseAuthorization();
 
@@ -37,7 +49,6 @@ app.MapControllers();
 
 app.MapFallbackToFile("/index.html");
 
-// apply migrations automatically in development
 using (var scope = app.Services.CreateScope())
 {
     var env = scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
