@@ -40,4 +40,3 @@ __screenshots__/
 # Environment
 # Local environment files should not be committed
 .env
-example.env
