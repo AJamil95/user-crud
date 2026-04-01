@@ -37,3 +37,7 @@ __screenshots__/
 
 # Vite
 *.timestamp-*-*.mjs
+# Environment
+# Local environment files should not be committed
+.env
+example.env
